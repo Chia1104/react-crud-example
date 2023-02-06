@@ -26,7 +26,7 @@ const getAllTasks = async (): Promise<{
 };
 
 const addTask = async (
-  task: AddTaskDto
+  task: AddTaskDto[]
 ): Promise<{
   items: Task[];
 }> => {
@@ -42,7 +42,7 @@ const addTask = async (
 };
 
 const updateTask = async (
-  task: UpdateTaskDto
+  task: UpdateTaskDto[]
 ): Promise<{
   items: Task[];
 }> => {
@@ -57,8 +57,28 @@ const updateTask = async (
   return await response.json();
 };
 
+const updateTitle = async ({
+  id,
+  task,
+}: {
+  id: UUID;
+  task: { title: string };
+}): Promise<{
+  items: Task;
+}> => {
+  const response = await fetch(`${API}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+    body: JSON.stringify(task),
+  });
+  return await response.json();
+};
+
 const deleteTask = async (
-  task: DeleteTaskDto
+  task: DeleteTaskDto[]
 ): Promise<{
   items: Task[];
 }> => {
@@ -73,4 +93,4 @@ const deleteTask = async (
   return await response.json();
 };
 
-export { getAllTasks, addTask, updateTask, deleteTask };
+export { getAllTasks, addTask, updateTask, deleteTask, updateTitle };

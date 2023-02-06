@@ -6,8 +6,9 @@ export interface AddTaskDto {
 }
 
 export interface UpdateTaskDto {
-  _uuid: UUID;
-  completed: boolean;
+  _uuid?: UUID;
+  completed?: boolean;
+  title?: string;
 }
 
 export interface DeleteTaskDto {
