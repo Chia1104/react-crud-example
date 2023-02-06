@@ -1,10 +1,13 @@
-import { Router } from "@/components";
+import { Router, RootProvider, MainNav } from "@/components";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
     <BrowserRouter>
-      <Router />
+      <RootProvider>
+        <MainNav />
+        <Router />
+      </RootProvider>
     </BrowserRouter>
   );
 }
